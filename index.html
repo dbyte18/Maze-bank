@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze Bank | Of Los Santos</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<header class="navbar">
+  <a class="brand" href="#" data-page="home">
+    <div class="logo-icon">〽</div>
+    <div><strong>MAZE BANK</strong><small>OF LOS SANTOS</small></div>
+  </a>
+  <nav id="mainNav">
+    <a href="#home" data-page="home">Inicio</a>
+    <a href="#loans" data-page="loans">Préstamos</a>
+    <a href="#cards" data-page="cards">Tarjetas</a>
+    <a href="#investments" data-page="investments">Inversiones</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="icon-btn" id="searchBtn">⌕</button>
+    <button class="red-btn small" id="openLogin">🔒 Banca en Línea</button>
+    <button class="avatar hidden" id="openDashboard"></button>
+  </div>
+</header>
+
+<main>
+<section id="home" class="hero page">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-copy">
+      <span class="eyebrow light">BIENVENIDO A</span>
+      <h1>MAZE BANK</h1>
+      <h2>OF LOS SANTOS</h2>
+      <h3>Tu futuro, en buenas manos.</h3>
+      <p>Una experiencia bancaria digital ficticia para administrar cuentas, simular créditos, consultar movimientos y mucho más.</p>
+      <button class="red-btn" data-page="loans">Explorar productos →</button>
+    </div>
+    <div class="login-card">
+      <div class="mini-brand"><div class="mini-logo">〽</div><div><b>MAZE BANK</b><small>OF LOS SANTOS</small></div></div>
+      <h3>Accede a tu cuenta</h3>
+      <form id="loginForm">
+        <label>Usuario o cédula<input id="loginId" required placeholder="Ej. 1001234567"></label>
+        <label>Contraseña<input id="loginPassword" type="password" required placeholder="••••••••"></label>
+        <button class="red-btn full">Ingresar</button>
+      </form>
+      <button class="link-btn" id="forgotBtn">¿Olvidaste tu contraseña?</button>
+      <div class="or"><span>o</span></div>
+      <button class="outline-btn full" id="openRegister">Crear una cuenta</button>
+      <p class="demo-note">Demo: cédula <b>1000000000</b> · clave <b>1234</b></p>
+    </div>
+  </div>
+</section>
+
+<section class="quick">
+  <div><b>▱ Cuentas</b><span>Ahorro y corriente</span></div>
+  <div><b>⇄ Transferencias</b><span>Operaciones simuladas</span></div>
+  <div><b>▣ Pagos</b><span>Servicios y recargas</span></div>
+  <div><b>▧ Banca digital</b><span>Disponible 24/7</span></div>
+  <div><b>♢ Seguridad</b><span>Datos guardados localmente</span></div>
+</section>
+
+<section id="loans" class="section page">
+  <div class="section-head"><span class="eyebrow">PRÉSTAMOS</span><h2>Simula tu crédito</h2><p>Elige un producto, define el monto y observa una cuota mensual estimada con interés.</p></div>
+  <div class="loan-layout">
+    <form id="loanForm" class="panel">
+      <label>Tipo de crédito
+        <select id="loanType">
+          <option value="libre">Libre inversión — 1.45% mensual</option>
+          <option value="vehiculo">Vehículo — 1.15% mensual</option>
+          <option value="vivienda">Vivienda — 0.85% mensual</option>
+          <option value="estudio">Estudios — 0.75% mensual</option>
+          <option value="negocio">Negocio — 1.25% mensual</option>
+        </select>
+      </label>
+      <label>Monto solicitado <input id="loanAmount" type="number" min="100000" step="50000" value="10000000"></label>
+      <label>Plazo <select id="loanTerm"><option value="12">12 meses</option><option value="24">24 meses</option><option value="36" selected>36 meses</option><option value="48">48 meses</option><option value="60">60 meses</option><option value="72">72 meses</option><option value="84">84 meses</option></select></label>
+      <button class="red-btn full" type="submit">Calcular crédito</button>
+    </form>
+    <div class="loan-result panel">
+      <span class="eyebrow">RESULTADO</span>
+      <div class="big-number" id="monthlyPayment">$0</div>
+      <p>Cuota mensual estimada</p>
+      <div class="result-grid">
+        <div><span>Tasa mensual</span><b id="monthlyRate">0%</b></div>
+        <div><span>Intereses totales</span><b id="totalInterest">$0</b></div>
+        <div><span>Total a pagar</span><b id="totalPay">$0</b></div>
+        <div><span>Plazo</span><b id="termLabel">36 meses</b></div>
+      </div>
+      <button class="outline-btn full" id="requestLoan">Solicitar este crédito</button>
+      <small>Simulación académica. No representa una oferta financiera real.</small>
+    </div>
+  </div>
+</section>
+
+<section id="cards" class="dark-section page">
+  <div class="section-head"><span class="eyebrow">TARJETAS</span><h2>Elige tu Maze Card</h2><p>Productos ficticios con diferentes beneficios.</p></div>
+  <div class="card-grid">
+    <article class="bank-card red-card"><span>MAZE BANK</span><b>MAZE RED</b><strong>•••• 8294</strong><small>VISA · CLÁSICA</small></article>
+    <article class="bank-card silver-card"><span>MAZE BANK</span><b>MAZE GOLD</b><strong>•••• 3198</strong><small>VISA · GOLD</small></article>
+    <article class="bank-card black-card"><span>MAZE BANK</span><b>MAZE BLACK</b><strong>•••• 7042</strong><small>VISA · BLACK</small></article>
+  </div>
+</section>
+
+<section id="investments" class="section page">
+  <div class="section-head"><span class="eyebrow">INVERSIONES</span><h2>Haz crecer tu dinero</h2><p>Simula cuánto podría crecer una inversión ficticia con interés compuesto.</p></div>
+  <div class="investment-box panel">
+    <label>Capital inicial <input id="invCapital" type="number" value="5000000" min="100000"></label>
+    <label>Tasa anual <input id="invRate" type="number" value="8" min="0" step="0.1"></label>
+    <label>Tiempo <select id="invYears"><option>1</option><option>2</option><option selected>3</option><option>5</option><option>10</option></select></label>
+    <button class="red-btn" id="calcInvestment">Simular inversión</button>
+    <div class="investment-result"><span>Valor estimado</span><strong id="investmentTotal">$0</strong></div>
+  </div>
+</section>
+</main>
+
+<!-- AUTH MODAL -->
+<div class="modal hidden" id="authModal">
+  <div class="modal-box">
+    <button class="close" data-close="authModal">×</button>
+    <div class="modal-title"><div class="mini-logo">〽</div><div><b>MAZE BANK</b><small>Cuenta digital</small></div></div>
+
+    <div class="tabs"><button class="tab active" data-auth="login">Ingresar</button><button class="tab" data-auth="register">Registrarme</button></div>
+
+    <form id="registerForm" class="auth-form hidden">
+      <label>Nombre completo<input id="regName" required></label>
+      <label>Número de cédula<input id="regId" required inputmode="numeric"></label>
+      <label>Correo electrónico<input id="regEmail" type="email" required></label>
+      <label>Fecha de nacimiento<input id="regBirth" type="date" required></label>
+      <label>Contraseña<input id="regPassword" type="password" minlength="4" required></label>
+      <label>Confirmar contraseña<input id="regPassword2" type="password" minlength="4" required></label>
+      <button class="red-btn full">Crear cuenta</button>
+    </form>
+
+    <form id="modalLoginForm" class="auth-form">
+      <label>Usuario o cédula<input id="modalLoginId" required></label>
+      <label>Contraseña<input id="modalLoginPassword" type="password" required></label>
+      <button class="red-btn full">Ingresar</button>
+    </form>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="modal hidden" id="dashboardModal">
+  <div class="dashboard">
+    <button class="close" data-close="dashboardModal">×</button>
+    <aside>
+      <div class="dashboard-brand"><div class="mini-logo">〽</div><b>MAZE BANK</b></div>
+      <button class="dash-link active" data-dash="overview">▦ Resumen</button>
+      <button class="dash-link" data-dash="movements">↕ Movimientos</button>
+      <button class="dash-link" data-dash="transfer">⇄ Transferir</button>
+      <button class="dash-link" data-dash="loan">▣ Mis créditos</button>
+      <button class="dash-link" data-dash="profile">♙ Mi perfil</button>
+      <button class="dash-link logout" id="logoutBtn">Salir</button>
+    </aside>
+    <div class="dash-content">
+      <div class="dash-page" id="dash-overview">
+        <span class="eyebrow">BANCA EN LÍNEA</span><h2 id="welcomeName">Hola</h2>
+        <div class="balance-card"><span>Saldo disponible</span><strong id="dashBalance">$0</strong><small>Cuenta de ahorros · **** 4821</small></div>
+        <div class="dash-grid">
+          <div class="panel"><h3>Acciones rápidas</h3><div class="quick-actions"><button data-dash="transfer">⇄ Transferir</button><button data-dash="loan">▣ Solicitar crédito</button><button data-dash="movements">↕ Movimientos</button></div></div>
+          <div class="panel"><h3>Últimos movimientos</h3><div id="recentMovements"></div></div>
+        </div>
+      </div>
+      <div class="dash-page hidden" id="dash-movements">
+        <span class="eyebrow">HISTORIAL</span><h2>Movimientos</h2><div class="panel" id="allMovements"></div>
+      </div>
+      <div class="dash-page hidden" id="dash-transfer">
+        <span class="eyebrow">TRANSFERENCIAS</span><h2>Enviar dinero</h2>
+        <form id="transferForm" class="panel narrow">
+          <label>Cuenta / cédula destino<input id="transferTo" required></label>
+          <label>Concepto<input id="transferConcept" required placeholder="Ej. Pago de servicios"></label>
+          <label>Monto<input id="transferAmount" type="number" min="1000" required></label>
+          <button class="red-btn full">Realizar transferencia simulada</button>
+          <small>Esta operación solo modifica los datos locales del prototipo.</small>
+        </form>
+      </div>
+      <div class="dash-page hidden" id="dash-loan">
+        <span class="eyebrow">CRÉDITOS</span><h2>Mis créditos</h2>
+        <div class="panel"><div id="userLoans"></div><button class="outline-btn" data-dash="loan-simulator">Abrir simulador</button></div>
+      </div>
+      <div class="dash-page hidden" id="dash-profile">
+        <span class="eyebrow">MI PERFIL</span><h2>Datos personales</h2><div class="panel profile" id="profileData"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
