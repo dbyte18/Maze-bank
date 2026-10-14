@@ -14,7 +14,7 @@
 
 <header class="navbar">
   <a class="brand" href="#" data-page="home">
-    <div class="logo-icon">〽</div>
+    <img src="images/logo-maze.png" class="logo-icon" alt="Maze Bank">
     <div><strong>MAZE BANK</strong><small>OF LOS SANTOS</small></div>
   </a>
   <nav id="mainNav">
@@ -39,21 +39,20 @@
       <h1>MAZE BANK</h1>
       <h2>OF LOS SANTOS</h2>
       <h3>Tu futuro, en buenas manos.</h3>
-      <p>Una experiencia bancaria digital ficticia para administrar cuentas, simular créditos, consultar movimientos y mucho más.</p>
+      <p>Una experiencia bancaria digital ficticia con Cuenta de Ahorros, Cuenta Corriente y Tarjeta de Crédito.</p>
       <button class="red-btn" data-page="loans">Explorar productos →</button>
     </div>
     <div class="login-card">
-      <div class="mini-brand"><div class="mini-logo">〽</div><div><b>MAZE BANK</b><small>OF LOS SANTOS</small></div></div>
+      <div class="mini-brand"><img src="images/logo-maze.png" class="mini-logo" alt="Maze Bank"><div><b>MAZE BANK</b><small>OF LOS SANTOS</small></div></div>
       <h3>Accede a tu cuenta</h3>
       <form id="loginForm">
-        <label>Usuario o cédula<input id="loginId" required placeholder="Ej. 1001234567"></label>
-        <label>Contraseña<input id="loginPassword" type="password" required placeholder="••••••••"></label>
+        <label>Usuario<input id="loginUsuario" required placeholder="Tu nombre de usuario"></label>
+        <label>Contraseña<input id="loginClave" type="password" required placeholder="••••••••"></label>
         <button class="red-btn full">Ingresar</button>
       </form>
-      <button class="link-btn" id="forgotBtn">¿Olvidaste tu contraseña?</button>
+      <div id="loginContador" class="demo-note"></div>
       <div class="or"><span>o</span></div>
       <button class="outline-btn full" id="openRegister">Crear una cuenta</button>
-      <p class="demo-note">Demo: cédula <b>1000000000</b> · clave <b>1234</b></p>
     </div>
   </div>
 </section>
@@ -61,13 +60,13 @@
 <section class="quick">
   <div><b>▱ Cuentas</b><span>Ahorro y corriente</span></div>
   <div><b>⇄ Transferencias</b><span>Operaciones simuladas</span></div>
-  <div><b>▣ Pagos</b><span>Servicios y recargas</span></div>
+  <div><b>▣ Tarjeta de crédito</b><span>Compras a cuotas</span></div>
   <div><b>▧ Banca digital</b><span>Disponible 24/7</span></div>
   <div><b>♢ Seguridad</b><span>Datos guardados localmente</span></div>
 </section>
 
 <section id="loans" class="section page">
-  <div class="section-head"><span class="eyebrow">PRÉSTAMOS</span><h2>Simula tu crédito</h2><p>Elige un producto, define el monto y observa una cuota mensual estimada con interés.</p></div>
+  <div class="section-head"><span class="eyebrow">PRÉSTAMOS</span><h2>Simula tu crédito</h2><p>Elige un producto, define el monto y observa una cuota mensual estimada con interés. (Simulador independiente de tus productos reales.)</p></div>
   <div class="loan-layout">
     <form id="loanForm" class="panel">
       <label>Tipo de crédito
@@ -93,7 +92,6 @@
         <div><span>Total a pagar</span><b id="totalPay">$0</b></div>
         <div><span>Plazo</span><b id="termLabel">36 meses</b></div>
       </div>
-      <button class="outline-btn full" id="requestLoan">Solicitar este crédito</button>
       <small>Simulación académica. No representa una oferta financiera real.</small>
     </div>
   </div>
@@ -102,9 +100,18 @@
 <section id="cards" class="dark-section page">
   <div class="section-head"><span class="eyebrow">TARJETAS</span><h2>Elige tu Maze Card</h2><p>Productos ficticios con diferentes beneficios.</p></div>
   <div class="card-grid">
-    <article class="bank-card red-card"><span>MAZE BANK</span><b>MAZE RED</b><strong>•••• 8294</strong><small>VISA · CLÁSICA</small></article>
-    <article class="bank-card silver-card"><span>MAZE BANK</span><b>MAZE SILVER</b><strong>•••• 3198</strong><small>VISA · SILVER</small></article>
-    <article class="bank-card black-card"><span>MAZE BANK</span><b>MAZE BLACK</b><strong>•••• 7042</strong><small>VISA · BLACK</small></article>
+    <article class="bank-card-foto">
+      <img src="images/tarjeta-basica.jpg" alt="Maze Bank Executive Account">
+      <div class="bank-card-etiqueta"><b>Cuenta de Ahorros</b><small>Executive Account · Maze Bank</small></div>
+    </article>
+    <article class="bank-card-foto">
+      <img src="images/tarjeta-basica.jpg" alt="Maze Bank Executive Account">
+      <div class="bank-card-etiqueta"><b>Cuenta Corriente</b><small>Executive Account · Maze Bank</small></div>
+    </article>
+    <article class="bank-card-foto">
+      <img src="images/tarjeta-platino.jpg" alt="Maze Bank Ultra Platinum">
+      <div class="bank-card-etiqueta"><b>Tarjeta de Crédito</b><small>Ultra Platinum · Maze Bank</small></div>
+    </article>
   </div>
 </section>
 
@@ -124,24 +131,26 @@
 <div class="modal hidden" id="authModal">
   <div class="modal-box">
     <button class="close" data-close="authModal">×</button>
-    <div class="modal-title"><div class="mini-logo">〽</div><div><b>MAZE BANK</b><small>Cuenta digital</small></div></div>
+    <div class="modal-title"><img src="images/logo-maze.png" class="mini-logo" alt="Maze Bank"><div><b>MAZE BANK</b><small>Cuenta digital</small></div></div>
 
     <div class="tabs"><button class="tab active" data-auth="login">Ingresar</button><button class="tab" data-auth="register">Registrarme</button></div>
 
     <form id="registerForm" class="auth-form hidden">
-      <label>Nombre completo<input id="regName" required></label>
-      <label>Número de cédula<input id="regId" required inputmode="numeric"></label>
-      <label>Correo electrónico<input id="regEmail" type="email" required></label>
-      <label>Fecha de nacimiento<input id="regBirth" type="date" required></label>
-      <label>Contraseña<input id="regPassword" type="password" minlength="4" required></label>
-      <label>Confirmar contraseña<input id="regPassword2" type="password" minlength="4" required></label>
+      <label>Número de identificación<input id="regIdentificacion" required inputmode="numeric"></label>
+      <label>Nombre completo<input id="regNombre" required></label>
+      <label>Número de celular<input id="regCelular" required inputmode="numeric"></label>
+      <label>Nombre de usuario<input id="regUsuario" required></label>
+      <label>Contraseña<input id="regClave" type="password" minlength="4" required></label>
+      <label>Repetir contraseña<input id="regClave2" type="password" minlength="4" required></label>
       <button class="red-btn full">Crear cuenta</button>
+      <small>Al registrarte recibes Cuenta de Ahorros (con $2.000.000 de saldo inicial), Cuenta Corriente y Tarjeta de Crédito.</small>
     </form>
 
     <form id="modalLoginForm" class="auth-form">
-      <label>Usuario o cédula<input id="modalLoginId" required></label>
-      <label>Contraseña<input id="modalLoginPassword" type="password" required></label>
+      <label>Usuario<input id="modalLoginUsuario" required></label>
+      <label>Contraseña<input id="modalLoginClave" type="password" required></label>
       <button class="red-btn full">Ingresar</button>
+      <div id="modalLoginContador" class="demo-note"></div>
     </form>
   </div>
 </div>
@@ -151,47 +160,181 @@
   <div class="dashboard">
     <button class="close" data-close="dashboardModal">×</button>
     <aside>
-      <div class="dashboard-brand"><div class="mini-logo">〽</div><b>MAZE BANK</b></div>
+      <div class="dashboard-brand"><img src="images/logo-maze.png" class="mini-logo" alt="Maze Bank"><b>MAZE BANK</b></div>
       <button class="dash-link active" data-dash="overview">▦ Resumen</button>
-      <button class="dash-link" data-dash="movements">↕ Movimientos</button>
+      <button class="dash-link" data-dash="operations">$ Consignar / Retirar</button>
       <button class="dash-link" data-dash="transfer">⇄ Transferir</button>
-      <button class="dash-link" data-dash="loan">▣ Mis créditos</button>
+      <button class="dash-link" data-dash="movements">↕ Movimientos</button>
+      <button class="dash-link" data-dash="credit">💳 Tarjeta de crédito</button>
+      <button class="dash-link" data-dash="loan">▣ Simulador de créditos</button>
       <button class="dash-link" data-dash="profile">♙ Mi perfil</button>
+      <button class="dash-link" data-dash="admin">⚙ Administrar usuarios</button>
       <button class="dash-link logout" id="logoutBtn">Salir</button>
     </aside>
     <div class="dash-content">
+
       <div class="dash-page" id="dash-overview">
         <span class="eyebrow">BANCA EN LÍNEA</span><h2 id="welcomeName">Hola</h2>
-        <div class="balance-card"><span>Saldo disponible</span><strong id="dashBalance">$0</strong><small>Cuenta de ahorros · **** 4821</small></div>
-        <div class="dash-grid">
-          <div class="panel"><h3>Acciones rápidas</h3><div class="quick-actions"><button data-dash="transfer">⇄ Transferir</button><button data-dash="loan">▣ Solicitar crédito</button><button data-dash="movements">↕ Movimientos</button></div></div>
-          <div class="panel"><h3>Últimos movimientos</h3><div id="recentMovements"></div></div>
-        </div>
+        <div id="accountsGrid" class="accounts-grid"></div>
       </div>
-      <div class="dash-page hidden" id="dash-movements">
-        <span class="eyebrow">HISTORIAL</span><h2>Movimientos</h2><div class="panel" id="allMovements"></div>
-      </div>
-      <div class="dash-page hidden" id="dash-transfer">
-        <span class="eyebrow">TRANSFERENCIAS</span><h2>Enviar dinero</h2>
-        <form id="transferForm" class="panel narrow">
-          <label>Cuenta / cédula destino<input id="transferTo" required></label>
-          <label>Concepto<input id="transferConcept" required placeholder="Ej. Pago de servicios"></label>
-          <label>Monto<input id="transferAmount" type="number" min="1000" required></label>
-          <button class="red-btn full">Realizar transferencia simulada</button>
-          <small>Esta operación solo modifica los datos locales del prototipo.</small>
+
+      <div class="dash-page hidden" id="dash-operations">
+        <span class="eyebrow">OPERACIONES</span><h2>Consignar o retirar</h2>
+        <form id="operacionForm" class="panel narrow">
+          <label>Tipo de operación
+            <select id="opTipo">
+              <option value="consignar">Consignar</option>
+              <option value="retirar">Retirar</option>
+            </select>
+          </label>
+
+          <div id="bloqueConsignar">
+            <label>Usuario o celular de quien recibe
+              <input id="opUsuarioDestino" placeholder="Escribe el usuario o el celular" autocomplete="off">
+            </label>
+            <label>Cuenta que recibe
+              <select id="opCuentaDestino">
+                <option value="Cuenta de Ahorros">Cuenta de Ahorros</option>
+                <option value="Cuenta Corriente">Cuenta Corriente</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="bloqueRetirar" class="hidden">
+            <label>Cuenta de la que retiras
+              <select id="opCuentaRetiro">
+                <option value="Cuenta de Ahorros">Cuenta de Ahorros</option>
+                <option value="Cuenta Corriente">Cuenta Corriente</option>
+              </select>
+            </label>
+          </div>
+
+          <label>Monto<input id="opMonto" type="number" min="1" required></label>
+          <button class="red-btn full">Realizar operación</button>
+          <div id="opMensaje" class="demo-note"></div>
         </form>
       </div>
+
+      <div class="dash-page hidden" id="dash-transfer">
+        <span class="eyebrow">TRANSFERENCIAS</span><h2>Mover dinero</h2>
+        <form id="transferForm" class="panel narrow">
+          <label>Cuenta origen
+            <select id="origenCuenta">
+              <option value="Cuenta de Ahorros">Cuenta de Ahorros</option>
+              <option value="Cuenta Corriente">Cuenta Corriente</option>
+            </select>
+          </label>
+
+          <label class="radio-group">
+            <input type="radio" name="destinoTipo" value="propia" checked> Mover a otra cuenta mía
+          </label>
+          <label class="radio-group">
+            <input type="radio" name="destinoTipo" value="otro"> Transferir a otro usuario
+          </label>
+
+          <div id="bloqueDestinoPropia">
+            <label>Cuenta destino (mía)
+              <select id="destinoCuentaPropia">
+                <option value="Cuenta Corriente">Cuenta Corriente</option>
+                <option value="Cuenta de Ahorros">Cuenta de Ahorros</option>
+                <option value="Tarjeta de Crédito">Tarjeta de Crédito (abono)</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="bloqueDestinoOtro" class="hidden">
+            <label>Usuario o celular destino<input id="destinoUsuario" placeholder="Escribe el usuario o el celular" autocomplete="off"></label>
+            <label>Tipo de cuenta destino
+              <select id="destinoTipoCuenta">
+                <option value="Cuenta de Ahorros">Cuenta de Ahorros</option>
+                <option value="Cuenta Corriente">Cuenta Corriente</option>
+                <option value="Tarjeta de Crédito">Tarjeta de Crédito (abono)</option>
+              </select>
+            </label>
+          </div>
+
+          <label>Monto<input id="montoTransferencia" type="number" min="1" required></label>
+          <button class="red-btn full">Realizar transferencia</button>
+          <div id="transferMensaje" class="demo-note"></div>
+        </form>
+      </div>
+
+      <div class="dash-page hidden" id="dash-movements">
+        <span class="eyebrow">HISTORIAL</span><h2>Movimientos</h2>
+        <label style="display:block;margin-bottom:15px;font-size:12px;font-weight:700">Elige una cuenta
+          <select id="movCuentaSelect">
+            <option value="Cuenta de Ahorros">Cuenta de Ahorros</option>
+            <option value="Cuenta Corriente">Cuenta Corriente</option>
+            <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+          </select>
+        </label>
+        <div class="panel" id="allMovements"></div>
+      </div>
+
+      <div class="dash-page hidden" id="dash-credit">
+        <span class="eyebrow">TARJETA DE CRÉDITO</span><h2>Comprar a cuotas</h2>
+        <div class="panel narrow">
+          <p id="creditResumen" style="font-size:13px;color:#555;margin-bottom:15px;"></p>
+          <form id="creditForm">
+            <label>Monto de la compra<input id="montoCompra" type="number" min="1" required></label>
+            <label>Número de cuotas
+              <select id="cuotasCompra">
+                <option value="1">1 cuota — 0%</option>
+                <option value="2">2 cuotas — 0%</option>
+                <option value="3">3 cuotas — 1.9%</option>
+                <option value="6">6 cuotas — 1.9%</option>
+                <option value="9">9 cuotas — 2.3%</option>
+                <option value="12">12 cuotas — 2.3%</option>
+              </select>
+            </label>
+            <button class="red-btn full">Comprar</button>
+            <div id="creditMensaje" class="demo-note"></div>
+          </form>
+        </div>
+      </div>
+
       <div class="dash-page hidden" id="dash-loan">
-        <span class="eyebrow">CRÉDITOS</span><h2>Mis créditos</h2>
-        <div class="panel"><div id="userLoans"></div><button class="outline-btn" data-dash="loan-simulator">Abrir simulador</button></div>
+        <span class="eyebrow">SIMULADOR</span><h2>Simulador de créditos</h2>
+        <div class="panel"><p style="font-size:12px;color:#777">Este simulador es independiente de tus productos reales. Úsalo desde la sección "Préstamos" en la página de inicio.</p></div>
       </div>
+
       <div class="dash-page hidden" id="dash-profile">
-        <span class="eyebrow">MI PERFIL</span><h2>Datos personales</h2><div class="panel profile" id="profileData"></div>
+        <span class="eyebrow">MI PERFIL</span><h2>Datos personales</h2>
+        <div class="panel profile" id="profileData"></div>
+
+        <div class="panel narrow" style="margin-top:20px;">
+          <h3 style="font-size:14px;margin-bottom:12px;">Editar perfil</h3>
+          <form id="perfilForm">
+            <label>Nombre completo<input id="perfilNombre"></label>
+            <label>Número de celular<input id="perfilCelular"></label>
+            <button class="red-btn full">Guardar cambios</button>
+            <div id="perfilMensaje" class="demo-note"></div>
+          </form>
+        </div>
+
+        <div class="panel narrow" style="margin-top:20px;">
+          <h3 style="font-size:14px;margin-bottom:12px;">Cambiar contraseña</h3>
+          <form id="claveForm">
+            <label>Contraseña actual<input id="claveActual" type="password" required></label>
+            <label>Contraseña nueva<input id="claveNueva" type="password" minlength="4" required></label>
+            <label>Confirmar contraseña nueva<input id="claveNueva2" type="password" minlength="4" required></label>
+            <button class="red-btn full">Cambiar contraseña</button>
+            <div id="claveMensaje" class="demo-note"></div>
+          </form>
+        </div>
       </div>
+
+      <div class="dash-page hidden" id="dash-admin">
+        <span class="eyebrow">ADMINISTRACIÓN</span><h2>Usuarios registrados</h2>
+        <div class="panel" id="adminLista"></div>
+      </div>
+
     </div>
   </div>
 </div>
 
-<script src="app.js"></script>
+<script src="js/modelo.js"></script>
+<script src="js/almacenamiento.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
